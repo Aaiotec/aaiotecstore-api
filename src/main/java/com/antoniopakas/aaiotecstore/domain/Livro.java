@@ -1,14 +1,25 @@
 package com.antoniopakas.aaiotecstore.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Livro {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+@Entity
+public class Livro implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	@Id
 	private Integer id;
 	private String titulo;
 	private String nome_autor;
 	private String texto;
 	
+	@OneToOne
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
 	public Livro() {

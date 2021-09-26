@@ -49,9 +49,6 @@ public void delete(Integer id) {
 			} catch (org.springframework.dao.DataIntegrityViolationException e) {
 			throw new com.antoniopakas.aaiotecstore.service.exceptions.DataIntegrityViolationException(
 					"Categoria nao pode ser deletada! Possui livros associado");
-			
-			}
-	 
-	     
+			}  
 }
 }

@@ -2,15 +2,11 @@ package com.antoniopakas.aaiotecstore.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import com.antoniopakas.aaiotecstore.domain.Categoria;
 import com.antoniopakas.aaiotecstore.dtos.CategoriaDTO;
 import com.antoniopakas.aaiotecstore.repositories.CategoriaRepository;
-import com.antoniopakas.aaiotecstore.service.exceptions.DataIntegrityViolationException;
 import com.antoniopakas.aaiotecstore.service.exceptions.ObjectNotFoundException;
 
 

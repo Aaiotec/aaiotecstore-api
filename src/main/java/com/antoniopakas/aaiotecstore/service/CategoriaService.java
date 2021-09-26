@@ -4,10 +4,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 import com.antoniopakas.aaiotecstore.domain.Categoria;
 import com.antoniopakas.aaiotecstore.repositories.CategoriaRepository;
+import com.antoniopakas.aaiotecstore.service.exceptions.ObjectNotFoundException;
 
 
 @Service
@@ -20,7 +21,7 @@ private CategoriaRepository repository;
 	public Categoria findById(Integer id) {
 		
 		Optional<Categoria>obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Objecto não encontrado! Id: " + id+ ", Tipo: " + Categoria.class.getName()));
 		
 }
 }

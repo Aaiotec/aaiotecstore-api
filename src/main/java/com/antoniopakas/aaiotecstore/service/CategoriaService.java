@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.antoniopakas.aaiotecstore.domain.Categoria;
+import com.antoniopakas.aaiotecstore.dtos.CategoriaDTO;
 import com.antoniopakas.aaiotecstore.repositories.CategoriaRepository;
 import com.antoniopakas.aaiotecstore.service.exceptions.ObjectNotFoundException;
 
@@ -34,5 +35,15 @@ public Categoria create(Categoria obj){
 	
 	obj.setId(null);
 	return repository.save(obj);
+}
+
+public Categoria update(Integer id, CategoriaDTO objDto) {
+	Categoria obj = findById(id);
+             	obj.setNome(objDto.getNome());
+             	obj.setDescricao(objDto.getDescricao());
+             	
+             	return repository.save(obj);
+             	
+	
 }
 }

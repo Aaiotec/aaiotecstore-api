@@ -1,5 +1,6 @@
 package com.antoniopakas.aaiotecstore.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ private CategoriaRepository repository;
 		Optional<Categoria>obj = repository.findById(id);
 		return obj.orElseThrow(()-> new ObjectNotFoundException("Objecto não encontrado! Id: " + id+ ", Tipo: " + Categoria.class.getName()));
 		
+}
+	
+public List<Categoria> findAll(){
+		
+	return repository.findAll();
 }
 }

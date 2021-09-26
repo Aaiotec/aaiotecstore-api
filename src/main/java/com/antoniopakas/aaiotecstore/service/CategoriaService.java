@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
 import com.antoniopakas.aaiotecstore.domain.Categoria;
 import com.antoniopakas.aaiotecstore.dtos.CategoriaDTO;
 import com.antoniopakas.aaiotecstore.repositories.CategoriaRepository;
+import com.antoniopakas.aaiotecstore.service.exceptions.DataIntegrityViolationException;
 import com.antoniopakas.aaiotecstore.service.exceptions.ObjectNotFoundException;
 
 
@@ -48,7 +48,14 @@ public Categoria update(Integer id, CategoriaDTO objDto) {
 
 public void delete(Integer id) {
 	         findById(id);
-	         repository.deleteById(id);
+	         try {
+	       	 repository.deleteById(id);
+			} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			throw new com.antoniopakas.aaiotecstore.service.exceptions.DataIntegrityViolationException(
+					"Categoria nao pode ser deletada! Possui livros associado");
+			
+			}
+	 
 	     
 }
 }

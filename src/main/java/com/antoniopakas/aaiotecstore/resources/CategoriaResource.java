@@ -20,6 +20,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value ="/categorias")
 public class CategoriaResource {
@@ -43,7 +45,7 @@ public class CategoriaResource {
 }
 	
 	@PostMapping
-	public ResponseEntity<Categoria> creat(@RequestBody Categoria obj){
+	public ResponseEntity<Categoria> creat(@Valid @RequestBody Categoria obj){
 	
 		obj = service.create(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -54,7 +56,7 @@ public class CategoriaResource {
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO obj){
+	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id,@Valid @RequestBody CategoriaDTO obj){
 	
 		Categoria newObj  = service.update(id, obj);
 		
